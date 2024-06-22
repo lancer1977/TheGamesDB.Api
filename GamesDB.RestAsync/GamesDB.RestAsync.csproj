@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="PolyhydraGames.Core.Interfaces" Version="2.0.0.40" />
-    <PackageReference Include="PolyhydraGames.Core.RestfulService" Version="1.0.0.33" />
+    <PackageReference Include="PolyhydraGames.Core.RestfulService" Version="1.0.0.35" />
   </ItemGroup>
 
 </Project>
