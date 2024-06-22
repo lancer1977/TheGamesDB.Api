@@ -1,8 +1,7 @@
-namespace GamesDB.RestAsync.Model
+namespace GamesDB.RestAsync.Model;
+
+public class GenreResponse
 {
-    public class GenreResponse
-    {
-        public int Count { get; set; }
-        public Dictionary<string, Genre> Genres { get; set; }
-    }
+    public int Count { get; set; }
+    public Dictionary<string, Genre> Genres { get; set; }
 }

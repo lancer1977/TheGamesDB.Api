@@ -1,9 +1,8 @@
-namespace GamesDB.RestAsync.Model
+namespace GamesDB.RestAsync.Model;
+
+public class PlatformSkinny
 {
-    public class PlatformSkinny
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Alias { get; set; }
-    }
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Alias { get; set; }
 }

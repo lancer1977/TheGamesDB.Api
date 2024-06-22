@@ -1,7 +1,6 @@
-namespace GamesDB.RestAsync.Model
+namespace GamesDB.RestAsync.Model;
+
+public class Genres : BaseApiResponse
 {
-    public class Genres : BaseApiResponse
-    {
-        public GenreResponse Data { get; set; }
-    }
+    public GenreResponse Data { get; set; }
 }

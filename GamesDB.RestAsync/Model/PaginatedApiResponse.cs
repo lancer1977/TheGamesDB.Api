@@ -1,7 +1,6 @@
-namespace GamesDB.RestAsync.Model
+namespace GamesDB.RestAsync.Model;
+
+public class PaginatedApiResponse : BaseApiResponse
 {
-    public class PaginatedApiResponse : BaseApiResponse
-    {
-        public PagesResponse Pages { get; set; }
-    }
+    public PagesResponse Pages { get; set; }
 }

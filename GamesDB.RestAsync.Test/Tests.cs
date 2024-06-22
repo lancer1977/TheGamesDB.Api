@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using GamesDB.RestAsync;
+using GamesDB.RestAsync.Enums;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
 using PolyhydraGames.Extensions;
@@ -106,11 +106,59 @@ public class Tests
         Assert.That(items.Any());
     }
 
+    //https://api.thegamesdb.net/v1/Games/Images?id=93527&filter=banner,boxart&page=0&apikey=c50e16377f86531d153e6d686f7604a5e606d6b4155181b6edd48b221d895c4d
+    //https://api.thegamesdb.net/v1/Games/Images?apikey=c50e16377f86531d153e6d686f7604a5e606d6b4155181b6edd48b221d895c4d&games_id=93527&filter%5Btype%5D=banner%2Cboxart
+    // 
+    [Test]
+    public async Task GetImages()
+    {
+        var result = await _search.Images(93527,ImageType.Banner | ImageType.Boxart);
+        var items = result.Data.Images;
+        foreach (var item in items.Values)
+        {
+            foreach (var image in item)
+            {
+                Console.WriteLine(image.Filename);
+            }
+        }
+        Assert.That(items.Any());
+    }
+
     [Test]
     public  void TypeCheck()
     {
         var imageTypes = ImageType.Boxart | ImageType.Clearlogo;
-        var result = TheGamesDbWrapper.GetImageType(imageTypes);
+        var result = imageTypes.GetImageType();
+        Console.WriteLine(result);
         Assert.That(result == "boxart,clearlogo");
     }
+
+    [Test]
+    public void GameFieldCheck()
+    {
+        var imageTypes = GameField.Platform | GameField.Publishers;
+        var result = imageTypes.GetFieldType();
+        Console.WriteLine(result);
+        Assert.That(result == "platform,publishers");
+    }
+
+
+    [Test]
+    public void GameFieldCheckAll()
+    {
+        var imageTypes = GameField.All;
+        var result = imageTypes.GetFieldType();
+        Console.WriteLine(result);
+        Assert.That(!string.IsNullOrEmpty(result));
+    }
+
+    [Test]
+    public void GameFieldCheck_None()
+    {
+        var imageTypes = GameField.None;
+        var result = imageTypes.GetFieldType();
+        Console.WriteLine(result);
+        Assert.That(string.IsNullOrEmpty(result));
+    }
+
 }

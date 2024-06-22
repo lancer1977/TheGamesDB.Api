@@ -1,7 +1,6 @@
-namespace GamesDB.RestAsync.Model
+namespace GamesDB.RestAsync.Model;
+
+public class Publishers : BaseApiResponse
 {
-    public class Publishers : BaseApiResponse
-    {
-        public PublisherResponse Data { get; set; }
-    }
+    public PublisherResponse Data { get; set; }
 }

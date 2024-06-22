@@ -1,8 +1,7 @@
-namespace GamesDB.RestAsync.Model
+namespace GamesDB.RestAsync.Model;
+
+public class GamesImages : BaseApiResponse
 {
-    public class GamesImages : BaseApiResponse
-    {
-        public PagesResponse Pages { get; set; }
-        public GameResponse Data { get; set; }
-    }
+    public PagesResponse Pages { get; set; }
+    public ImagesResponse Data { get; set; }
 }

@@ -1,8 +1,7 @@
-namespace GamesDB.RestAsync.Model
+namespace GamesDB.RestAsync.Model;
+
+public class PlatformResponse
 {
-    public class PlatformResponse
-    {
-        public int Count { get; set; }
-        public Dictionary<string,Platform> Platforms { get; set; }
-    }
+    public int Count { get; set; }
+    public Dictionary<string,Platform> Platforms { get; set; }
 }

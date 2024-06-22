@@ -1,7 +1,6 @@
-namespace GamesDB.RestAsync.Model
+namespace GamesDB.RestAsync.Model;
+
+public class Platforms : BaseApiResponse
 {
-    public class Platforms : BaseApiResponse
-    {
-        public PlatformResponse Data { get; set; }
-    }
+    public PlatformResponse Data { get; set; }
 }
