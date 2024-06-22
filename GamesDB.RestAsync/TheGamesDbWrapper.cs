@@ -6,6 +6,7 @@ public class TheGamesDbWrapper : RestServiceBase
 {
     private (string, string) Id(string id) => ("id", id.ToString());
     private readonly (string, string) Fields = ("fields","players,publishers,genres,overview,last_updated,rating,platform,coop,youtube,os,processor,ram,hdd,video,sound,alternates");
+    private readonly (string, string) ImageFields = ("fields", "fanart,banner,boxart,screenshot,clearlogo,titlescreen");
     private (string, string) Filter(string filter) => ("filter", filter);
     private readonly (string, string) Include = ("include", "boxart,platform,genres,publishers,developers");
     private (string, string) Name(string name) => ("name", name);
@@ -33,7 +34,7 @@ public class TheGamesDbWrapper : RestServiceBase
     public Task<Publishers> Publishers() => Get<Publishers>(GetAuthTupple());
     public Task<Platforms> Platforms() => Get<Platforms>(GetAuthTupple());
 
-    public Task<Game> ByGameID(List<int> id, int offset = 0)
+    public Task<Games> ByGameID(IEnumerable<int> id, int offset = 0)
     {
         var parms = new List<(string, string)>()
         {
@@ -44,10 +45,10 @@ public class TheGamesDbWrapper : RestServiceBase
             GetAuthTupple(),
 
         };
-        return Get<Game>(parms, "Games/" + nameof(ByGameID));
+        return Get<Games>(parms, "Games/" + nameof(ByGameID));
     }
 
-    public Task<GamesByGameID> ByGameName(string name,int? platformId = null, int offset = 0)
+    public Task<Games> ByGameName(string name,int? platformId = null, int offset = 0)
     {
         var parms = new List<(string, string)>()
         {
@@ -62,12 +63,12 @@ public class TheGamesDbWrapper : RestServiceBase
         {
             parms.Add(Platform(platformId.Value));
         }
-        return Get<GamesByGameID>(parms, "Games/" + nameof(ByGameName));
+        return Get<Games>(parms, "Games/" + nameof(ByGameName));
     }
 
-    public Task<Game> ByPlatformID(int id, int offset = 0)=> ByPlatformID(new List<int>(id), offset);
+    public Task<Games> ByPlatformID(int id, int offset = 0)=> ByPlatformID([id], offset);
 
-    public Task<Game> ByPlatformID(List<int> id, int offset = 0)
+    public Task<Games> ByPlatformID(List<int> id, int offset = 0)
     {
         var parms = new List<(string, string)>()
         {
@@ -78,7 +79,61 @@ public class TheGamesDbWrapper : RestServiceBase
             GetAuthTupple(),
 
         };
-        return Get<Game>(parms, "Games/" + nameof(ByGameID));
+        return Get<Games>(parms, "Games/" + nameof(ByPlatformID));
+    }
+
+    public Task<Games> Images(int id, ImageType type, int offset = 0) => Images([id], type, offset);
+
+    public Task<Games> Images(List<int> id, ImageType type, int offset = 0)
+    {
+        var parms = new List<(string, string)>()
+        {
+            Id(id.Select(x=>x.ToString()).Aggregate((x,y)=>x +"," + y)),
+            Filter(GetImageType(type)),
+            //Include,
+            Page(offset),
+            GetAuthTupple(),
+
+        };
+        return Get<Games>(parms, "Games/" + nameof(ByPlatformID));
+    }
+
+    public static string GetImageType(ImageType type)
+    {
+        string result = "";
+        List<string> art = new List<string>();
+ 
+        if (type.HasFlag(ImageType.FanArt))
+        {
+            art.Add("fanart");
+        }
+
+        if (type.HasFlag(ImageType.Banner))
+        {
+            art.Add("banner");
+        }
+
+        if (type.HasFlag(ImageType.Boxart))
+        {
+            art.Add("boxart");
+        }
+
+        if (type.HasFlag(ImageType.Screenshot))
+        {
+            art.Add("screenshot");
+        }
+
+        if (type.HasFlag(ImageType.Clearlogo))
+        {
+            art.Add("clearlogo");
+        }
+
+        if (type.HasFlag(ImageType.TitleScreen))
+        {
+            art.Add("titlescreen");
+        }
+
+        return string.Join(',',art);
     }
 
 }

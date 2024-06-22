@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using GamesDB.RestAsync;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
+using PolyhydraGames.Extensions;
 
 namespace GamesDB.RestAsync.Test;
 
@@ -19,7 +20,7 @@ public class Tests
     }
 
     [SetUp]
-    public async Task Setup()
+    public void Setup()
     {
         //Get Client Secret
         var configuration = new ConfigurationBuilder()
@@ -67,12 +68,49 @@ public class Tests
     public async Task GamesByName()
     {
         var result = await _search.ByGameName("Mario Kart");
-        var items = result.Data.Games;
-        foreach(var item in items)
+        var items = result.Data.Games;       
+        //Console.WriteLine(String.Join(',', items.Select(x=>x.Id)));
+        foreach (var item in items)
         {
-            Console.WriteLine(item.Id + ": " + item.GameTitle );
+            Console.WriteLine(item.GameTitle);
         }
         Console.WriteLine();
         Assert.That(items.Any());
+    }
+
+    [Test]
+    public async Task GamesById()
+    {
+        var ids = new[] { 93527,111047,266,47050,55187,113990,114167,96970,64547,76971,12733,114674,119134,127248,93194,17444,106592,119053,75652,99856 }
+            .ToList();
+        var result = await _search.ByGameID(ids);
+        var items = result.Data.Games;
+        //Console.WriteLine(String.Join(',', items.Select(x=>x.Id)));
+        foreach (var item in items)
+        {
+            Console.WriteLine(item.GameTitle );
+        }
+        Console.WriteLine();
+        Assert.That(items.Any());
+    }
+
+    [Test]
+    public async Task GameByPlatformId()
+    {
+        var result = await _search.ByPlatformID(21);
+        var items = result.Data.Games;
+        foreach (var item in items)
+        {
+            Console.WriteLine(item.GameTitle);
+        }
+        Assert.That(items.Any());
+    }
+
+    [Test]
+    public  void TypeCheck()
+    {
+        var imageTypes = ImageType.Boxart | ImageType.Clearlogo;
+        var result = TheGamesDbWrapper.GetImageType(imageTypes);
+        Assert.That(result == "boxart,clearlogo");
     }
 }

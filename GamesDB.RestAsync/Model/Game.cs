@@ -3,12 +3,19 @@ namespace GamesDB.RestAsync.Model
 {
     public class Game
     {
+        private int _players;
         public int Id { get; set; }
         [JsonPropertyName("game_title")]
         public string GameTitle { get; set; }
         public string ReleaseDate { get; set; }
         public int Platform { get; set; }
-        public int Players { get; set; }
+
+        public int? Players
+        {
+            get => _players;
+            set { _players = value ?? 1; }
+        }
+
         public string Overview { get; set; }
         [JsonPropertyName("last_updated")]
         public string LastUpdated { get; set; }

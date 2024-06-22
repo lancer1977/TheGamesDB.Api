@@ -37,6 +37,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="PolyhydraGames.Core.Test" Version="1.0.0.15" />
+		<PackageReference Include="PolyhydraGames.Extensions" Version="2.1.1.51" />
 	</ItemGroup>
 
   <ItemGroup> 

@@ -1,6 +1,6 @@
 namespace GamesDB.RestAsync.Model
 {
-    public class GamesByGameID : BaseApiResponse
+    public class Games : BaseApiResponse
     {
         public PagesResponse Pages { get; set; }
         public GameResponse Data { get; set; }
