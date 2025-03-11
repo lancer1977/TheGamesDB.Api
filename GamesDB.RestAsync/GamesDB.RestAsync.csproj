@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PolyhydraGames.Core.Interfaces" Version="2.0.0.40" />
-    <PackageReference Include="PolyhydraGames.Core.RestfulService" Version="1.0.0.35" />
+    <PackageReference Include="PolyhydraGames.Core.Interfaces" Version="2.0.0.41" />
+    <PackageReference Include="PolyhydraGames.Core.RestfulService" Version="1.0.0.39" />
   </ItemGroup>
 
 </Project>
