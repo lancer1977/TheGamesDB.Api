@@ -1,0 +1,23 @@
+# TheGamesDB API Integration
+
+A .NET 10 library for interacting with TheGamesDB API.
+
+## Project Structure
+
+- `GamesDB.RestAsync/`: Core library implementation.
+- `GamesDB.RestAsync.Test/`: NUnit tests for the library.
+- `docs/`: Detailed documentation and design decisions.
+
+## Getting Started
+
+### Prerequisites
+- .NET 10.0 SDK
+
+## Testing
+The project uses NUnit for testing. To run tests:
+```bash
+dotnet test Api.TheGamesDB/GamesDB.RestAsync.Test/GamesDB.RestAsync.Test.csproj
+```
+
+## Documentation
+Additional documentation can be found in the [docs](docs/) directory.
