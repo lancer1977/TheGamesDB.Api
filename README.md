@@ -2,6 +2,15 @@
 
 A .NET 10 library for interacting with TheGamesDB API.
 
+## Tags
+
+- api
+- dotnet
+- api-the-games-db
+- docs
+- testing
+- website
+
 ## Project Structure
 
 - `GamesDB.RestAsync/`: Core library implementation.
