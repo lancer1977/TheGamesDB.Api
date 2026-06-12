@@ -22,13 +22,23 @@ public class Tests
     [SetUp]
     public void Setup()
     {
+        if (!string.Equals(Environment.GetEnvironmentVariable("THEGAMESDB_LIVE_TESTS"), "true", StringComparison.OrdinalIgnoreCase))
+        {
+            Assert.Ignore("GamesDB integration tests require THEGAMESDB_LIVE_TESTS=true and a valid GamesDB API key.");
+        }
+
         //Get Client Secret
         var configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory()) // Set the base path to the test project
             .AddUserSecrets("d1921150-b78b-40bf-ba16-9dcf02692536") // Use the UserSecretsId generated earlier
             .Build();
-        //_search = new TheGamesDbWrapper(configuration["Twitch:ClientId"], configuration["Twitch:Secret"], "https://api.igdb.com/v4/", TestHelpers.GetLogger<IgdbService>());
-        _search = new TheGamesDbWrapper(new GamesDBEndpointFactory(configuration["GamesDB:ApiKey"]), new HttpService());
+        var apiKey = configuration["GamesDB:ApiKey"];
+        if (string.IsNullOrWhiteSpace(apiKey))
+        {
+            Assert.Ignore("GamesDB integration tests require a valid GamesDB:ApiKey user secret.");
+        }
+
+        _search = new TheGamesDbWrapper(new GamesDBEndpointFactory(apiKey), new HttpService());
 
 
     }
