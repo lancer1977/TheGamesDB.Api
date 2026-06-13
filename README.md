@@ -30,3 +30,9 @@ dotnet test Api.TheGamesDB/GamesDB.RestAsync.Test/GamesDB.RestAsync.Test.csproj
 
 ## Documentation
 Additional documentation can be found in the [docs](docs/) directory.
+
+## Docs
+
+- [Docs Index](./docs/README.md)
+- [Feature Index](./docs/features/README.md)
+- [Roadmap Index](./docs/roadmaps/README.md)
