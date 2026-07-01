@@ -74,6 +74,7 @@ project.lock.json
 project.fragment.lock.json
 artifacts/
 .devstudio/runtime/
+.devstudio/work/
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt

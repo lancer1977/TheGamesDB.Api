@@ -25,7 +25,7 @@ A .NET 10 library for interacting with TheGamesDB API.
 ## Testing
 The project uses NUnit for testing. To run tests:
 ```bash
-dotnet test Api.TheGamesDB/GamesDB.RestAsync.Test/GamesDB.RestAsync.Test.csproj
+bash scripts/validate.sh
 ```
 
 ## Documentation
